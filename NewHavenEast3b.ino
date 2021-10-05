@@ -1694,6 +1694,25 @@ void loop()
       }
     }
   }
+  else if(bA4 && bD4)   //A4 to D4
+  {
+    if(!routeSet)
+    {
+      debounce();
+      if(bA4 && bD4)
+      {
+        pulse(s5N);
+        pulse(s8N);
+        pulse(s12R);
+        pulse(s16N);
+        pulse(s17N);
+        pulse(s23N);
+        pulse(s24N);
+        pulse(s25N);
+        routeSet = true;
+      }
+    }
+  }
   else if(bA4 && bD2)   //A4 to D2
   {
     if(!routeSet)
@@ -1748,6 +1767,19 @@ void loop()
         pulse(s23N);
         pulse(s24N);
         pulse(s25N);
+        routeSet = true;
+      }
+    }
+  }
+
+  else if(bA5 && bB10)   //A5 to B10
+  {
+    if(!routeSet)
+    {
+      debounce();
+      if(bA5 && bB10)
+      {
+        pulse(s6N);
         routeSet = true;
       }
     }
@@ -1848,6 +1880,45 @@ void loop()
       }
     }
   }
+  else if(bB11 && bD2)   //B11 to D2
+  {
+    if(!routeSet)
+    {
+      debounce();
+      if(bB11 && bD2)
+      {
+        pulse(s9R);
+        pulse(s13N);
+        pulse(s20R);
+        pulse(s22N);
+        pulse(s24R);
+        pulse(s25R);
+        pulse(s26R);
+        pulse(s27N);
+        routeSet = true;
+      }
+    }
+  }
+  else if(bB12 && bD2)   //B12 to D2
+  {
+    if(!routeSet)
+    {
+      debounce();
+      if(bB12 && bD2)
+      {
+        pulse(s9N);
+        pulse(s13N);
+        pulse(s20R);
+        pulse(s22N);
+        pulse(s24R);
+        pulse(s25R);
+        pulse(s26R);
+        pulse(s27N);
+        routeSet = true;
+      }
+    }
+  }
+
   else if(bA6 && bD3)   //A6 to D3
   {
     if(!routeSet)
@@ -1867,6 +1938,43 @@ void loop()
       }
     }
   }
+  else if(bB11 && bD3)   //A6 to D3
+  {
+    if(!routeSet)
+    {
+      debounce();
+      if(bB11 && bD3)
+      {
+        pulse(s9R);
+        pulse(s13N);
+        pulse(s20R);
+        pulse(s22N);
+        pulse(s24R);
+        pulse(s25R);
+        pulse(s26N);
+        routeSet = true;
+      }
+    }
+  }
+  else if(bB12 && bD3)   //B12 to D3
+  {
+    if(!routeSet)
+    {
+      debounce();
+      if(bB12 && bD3)
+      {
+        pulse(s9N);
+        pulse(s13N);
+        pulse(s20R);
+        pulse(s22N);
+        pulse(s24R);
+        pulse(s25R);
+        pulse(s26N);
+        routeSet = true;
+      }
+    }
+  }
+
   else if(bA6 && bD4)   //A6 to D4
   {
     if(!routeSet)
@@ -1885,6 +1993,41 @@ void loop()
       }
     }
   }
+  else if(bB11 && bD4)   //A6 to D4
+  {
+    if(!routeSet)
+    {
+      debounce();
+      if(bB11 && bD4)
+      {
+        pulse(s9R);
+        pulse(s13N);
+        pulse(s20R);
+        pulse(s22N);
+        pulse(s24R);
+        pulse(s25N);
+        routeSet = true;
+      }
+    }
+  }
+  else if(bB12 && bD4)   //A6 to D4
+  {
+    if(!routeSet)
+    {
+      debounce();
+      if(bB12 && bD4)
+      {
+        pulse(s9N);
+        pulse(s13N);
+        pulse(s20R);
+        pulse(s22N);
+        pulse(s24R);
+        pulse(s25N);
+        routeSet = true;
+      }
+    }
+  }
+
   else if(bA6 && bD5)   //A6 to D5
   {
     if(!routeSet)
@@ -1904,6 +2047,43 @@ void loop()
       }
     }
   }
+  else if(bB11 && bD5)   //B11 to D5
+  {
+    if(!routeSet)
+    {
+      debounce();
+      if(bB11 && bD5)
+      {
+        pulse(s9R);
+        pulse(s13N);
+        pulse(s20R);
+        pulse(s22N);
+        pulse(s24N);
+        pulse(s28N);
+        pulse(s29N);
+        routeSet = true;
+      }
+    }
+  }
+  else if(bB12 && bD5)   //B12 to D5
+  {
+    if(!routeSet)
+    {
+      debounce();
+      if(bB12 && bD5)
+      {
+        pulse(s9N);
+        pulse(s13N);
+        pulse(s20R);
+        pulse(s22N);
+        pulse(s24N);
+        pulse(s28N);
+        pulse(s29N);
+        routeSet = true;
+      }
+    }
+  }
+
   else if(bA6 && bD6)   //A6 to D6
   {
     if(!routeSet)
