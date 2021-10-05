@@ -99,7 +99,7 @@ void setup()
   Serial.begin(9600);
   Wire.begin();    //start I2C bus
 
-//set output ports  
+//set output ports
   Wire.beginTransmission(chip22);
   Wire.write(0x00);  //IODIRA register
   Wire.write(0x00);  //set port A to outputs
@@ -110,30 +110,30 @@ void setup()
   Wire.endTransmission();
 
   Wire.beginTransmission(chip23);
-  Wire.write(0x00);  
-  Wire.write(0x00); 
+  Wire.write(0x00);
+  Wire.write(0x00);
   Wire.endTransmission();
   Wire.beginTransmission(chip23);
-  Wire.write(0x01); 
-  Wire.write(0x00); 
+  Wire.write(0x01);
+  Wire.write(0x00);
   Wire.endTransmission();
 
   Wire.beginTransmission(chip24);
-  Wire.write(0x00); 
-  Wire.write(0x00); 
+  Wire.write(0x00);
+  Wire.write(0x00);
   Wire.endTransmission();
   Wire.beginTransmission(chip24);
-  Wire.write(0x01); 
-  Wire.write(0x00); 
+  Wire.write(0x01);
+  Wire.write(0x00);
   Wire.endTransmission();
 
   Wire.beginTransmission(chip25);
-  Wire.write(0x00); 
-  Wire.write(0x00); 
+  Wire.write(0x00);
+  Wire.write(0x00);
   Wire.endTransmission();
   Wire.beginTransmission(chip25);
-  Wire.write(0x01); 
-  Wire.write(0x00); 
+  Wire.write(0x01);
+  Wire.write(0x00);
   Wire.endTransmission();
 
   //Set pullup resistors on inputs
@@ -141,22 +141,22 @@ void setup()
   Wire.beginTransmission(chip20);
   Wire.write(0x0C); // GPPUA register
   Wire.write(0xFF); // turn on pullups
-  Wire.endTransmission();  
+  Wire.endTransmission();
 
   Wire.beginTransmission(chip20);
   Wire.write(0x0D); // GPPUB register
   Wire.write(0xFF); // turn on pullups
-  Wire.endTransmission();  
+  Wire.endTransmission();
 
   Wire.beginTransmission(chip21);
   Wire.write(0x0C); // GPPUA register
   Wire.write(0xFF); // turn on pullups
-  Wire.endTransmission();  
+  Wire.endTransmission();
 
   Wire.beginTransmission(chip21);
   Wire.write(0x0D); // GPPUB register
   Wire.write(0xFF); // turn on pullups
-  Wire.endTransmission();  
+  Wire.endTransmission();
 
   pinMode(A0, INPUT_PULLUP);        //Arduino pins A0 and A1 are additional digital inputs
   pinMode(A1, INPUT_PULLUP);
@@ -170,7 +170,7 @@ void setup()
 byte ReadPort(int chip, int port)
 {
   Wire.beginTransmission(chip);
-  Wire.write(port);    
+  Wire.write(port);
   Wire.endTransmission();
   Wire.requestFrom(chip, 1); //get 1 byte
   return Wire.read();
@@ -187,40 +187,40 @@ void readButtons()
   bA1 = !bitRead(Input[0], 7);     //break out individual buttons from port bytes
   bA2 = !bitRead(Input[0], 6);
   bA3 = !bitRead(Input[0], 5);
-  bA4 = !bitRead(Input[0], 4); 
+  bA4 = !bitRead(Input[0], 4);
   bA5 = !bitRead(Input[0], 3);
   bA6 = !bitRead(Input[0], 2);
   bB2 = !bitRead(Input[0], 1);
-  bB3 = !bitRead(Input[0], 0); 
+  bB3 = !bitRead(Input[0], 0);
 
   bB4 = !bitRead(Input[1], 7);
   bB5 = !bitRead(Input[1], 6);
   bB6 = !bitRead(Input[1], 5);
-  bB7 = !bitRead(Input[1], 4); 
+  bB7 = !bitRead(Input[1], 4);
   bB8 = !bitRead(Input[1], 3);
   bB9 = !bitRead(Input[1], 2);
   bB10 = !bitRead(Input[1], 1);
-  bB11 = !bitRead(Input[1], 0); 
+  bB11 = !bitRead(Input[1], 0);
 
   bB12 = !bitRead(Input[2], 7);
   bB13 = !bitRead(Input[2], 6);
   bB1 = !bitRead(Input[2], 5);
-  bC1 = !bitRead(Input[2], 4); 
+  bC1 = !bitRead(Input[2], 4);
   bC2 = !bitRead(Input[2], 3);
   bC3 = !bitRead(Input[2], 2);
   bC4 = !bitRead(Input[2], 1);
-  bC5 = !bitRead(Input[2], 0); 
+  bC5 = !bitRead(Input[2], 0);
 
   bC6 = !bitRead(Input[3], 7);
   bX1 = !bitRead(Input[3], 6);
   bD6 = !bitRead(Input[3], 5);
-  bD5 = !bitRead(Input[3], 4); 
+  bD5 = !bitRead(Input[3], 4);
   bD1 = !bitRead(Input[3], 3);
   bD2 = !bitRead(Input[3], 2);
   bD3 = !bitRead(Input[3], 1);
   bD4 = !bitRead(Input[3], 0);
 
-  bX2 = !digitalRead(A0);      //Input from Arduino pin          
+  bX2 = !digitalRead(A0);      //Input from Arduino pin
 }
 
 // -----------------------------------------------------------------------------
@@ -237,20 +237,20 @@ sendPulse(
     int     chip,
     int     port,
     byte    output )
-{  
+{
     Serial.print   ("sendPulse: ");
     Serial.print   (chip, HEX);
     Serial.print   (" ");
     Serial.print   (port, HEX);
     Serial.print   (" ");
     Serial.println (output, HEX);
-    
-    Wire.beginTransmission(chip);  
-    Wire.write(port);              
+
+    Wire.beginTransmission(chip);
+    Wire.write(port);
     Wire.write(output);           //set pulse bit
     Wire.endTransmission();
 
-    delay(20);                    //pulse length                      
+    delay(20);                    //pulse length
 
     Wire.beginTransmission(chip);
     Wire.write(port);
@@ -269,7 +269,7 @@ pulse(
     Serial.println (relay, DEC);
 
     Output = 0;
-    bitWrite(Output, relay%8, 1);       //set the relevant bit in the byte to be sent        
+    bitWrite(Output, relay%8, 1);       //set the relevant bit in the byte to be sent
 
     if(relay < 8)                       //then find the right port to send it to
         sendPulse(chip22, portB, Output);
@@ -361,7 +361,7 @@ void loop()
     if(!routeSet)
     {
       debounce();
-      if(bA1 && bB3)    
+      if(bA1 && bB3)
       {
         pulse(s1R);
         pulse(s2N);
@@ -388,13 +388,15 @@ void loop()
     {
       debounce();
       if(bA2 && bB4)
-      {      
+      {
         pulse(s2N);
         pulse(s3N);
         routeSet = true;
       }
     }
   }
+
+
   else if(bA3 && bB4)   //A3 to B4
   {
     if(!routeSet)
@@ -430,10 +432,10 @@ void loop()
       {
         pulse(s4R);
         pulse(s5N);
-        routeSet = true;          
+        routeSet = true;
       }
     }
-  }  
+  }
   else if(bA4 && bB6)   //A4 to B6
   {
     if(!routeSet)
@@ -455,7 +457,7 @@ void loop()
       if(bA4 && bB7)
       {
         pulse(s5N);
-        routeSet = true;      
+        routeSet = true;
       }
     }
   }
@@ -467,17 +469,17 @@ void loop()
       if(bA5 && bB10)
       {
         pulse(s6N);
-        routeSet = true;      
+        routeSet = true;
       }
-    } 
-  }  
+    }
+  }
   else if(bA5 && bB11)  //A5 to B11
   {
     if(!routeSet)
     {
       debounce();
       if(bA5 && bB11)
-      {  
+      {
         pulse(s6R);
         pulse(s7N);
         routeSet = true;
@@ -515,7 +517,7 @@ void loop()
   else if(bB1 && bC1)       //B1 to C1
   {
     if(!routeSet)
-    { 
+    {
       debounce();
       if(bB1 && bC1)
       {
@@ -573,7 +575,7 @@ void loop()
       {
         pulse(s11N);
         pulse(s16N);
-        routeSet = true;      
+        routeSet = true;
       }
     }
   }
@@ -600,7 +602,7 @@ void loop()
         pulse(s12N);
         pulse(s16N);
         pulse(s17N);
-        routeSet = true;        
+        routeSet = true;
       }
     }
   }
@@ -614,7 +616,7 @@ void loop()
         pulse(s8R);
         pulse(s12R);
         pulse(s16R);
-        routeSet = true;      
+        routeSet = true;
       }
     }
   }
@@ -628,7 +630,7 @@ void loop()
         pulse(s8R);
         pulse(s12R);
         pulse(s16N);
-        routeSet = true;       
+        routeSet = true;
       }
     }
   }
@@ -642,7 +644,7 @@ void loop()
         pulse(s8N);
         pulse(s12R);
         pulse(s16R);
-        routeSet = true;      
+        routeSet = true;
       }
     }
   }
@@ -657,7 +659,7 @@ void loop()
         pulse(s12R);
         pulse(s16N);
         pulse(s17N);
-        routeSet = true;        
+        routeSet = true;
       }
     }
   }
@@ -697,7 +699,7 @@ void loop()
         pulse(s14N);
         pulse(s18R);
         pulse(s20N);
-        routeSet = true;          
+        routeSet = true;
       }
     }
   }
@@ -780,7 +782,7 @@ void loop()
       {
         pulse(s13R);
         pulse(s20R);
-        routeSet = true;        
+        routeSet = true;
       }
     }
   }
@@ -793,7 +795,7 @@ void loop()
       {
         pulse(s13R);
         pulse(s20N);
-        routeSet = true;       
+        routeSet = true;
       }
     }
   }
@@ -814,7 +816,7 @@ void loop()
       }
     }
   }
-  else if(bC1 && bD2)    //C1 to D2    
+  else if(bC1 && bD2)    //C1 to D2
   {
     if(!routeSet)
     {
@@ -842,14 +844,14 @@ void loop()
         routeSet = true;
       }
     }
-  }      
+  }
   else if(bC1 && bD4)    //C1 to D4
   {
     if(!routeSet)
     {
       debounce();
       if(bC1 && bD4)
-      {    
+      {
         pulse(s19R);
         pulse(s23R);
         pulse(s24N);
@@ -901,10 +903,10 @@ void loop()
         pulse(s23N);
         pulse(s25N);
         pulse(s26N);
-        routeSet = true;      
+        routeSet = true;
       }
     }
-  }     
+  }
   else if(bC2 && bD4)    //C2 to D4
   {
     if(!routeSet)
@@ -951,14 +953,14 @@ void loop()
         routeSet = true;
       }
     }
-  }    
+  }
   else if(bC3 && bD3)    //C3 to D3
   {
     if(!routeSet)
     {
       debounce();
       if(bC3 && bD3)
-      {     
+      {
         pulse(s23N);
         pulse(s24N);
         pulse(s25R);
@@ -966,7 +968,7 @@ void loop()
         routeSet = true;
       }
     }
-  }  
+  }
   else if(bC3 && bD4)    //C3 to D4
   {
     if(!routeSet)
@@ -1011,8 +1013,8 @@ void loop()
         pulse(s27N);
         routeSet = true;
       }
-    } 
-  } 
+    }
+  }
   else if(bC4 && bD3)    //C4 to D3
   {
     if(!routeSet)
@@ -1027,7 +1029,7 @@ void loop()
         routeSet = true;
       }
     }
-  } 
+  }
   else if(bC4 && bD4)    //C4 to D4
   {
     if(!routeSet)
@@ -1041,7 +1043,7 @@ void loop()
         routeSet = true;
       }
     }
-  } 
+  }
   else if(bC4 && bD5)    //C4 to D5
   {
     if(!routeSet)
@@ -1105,8 +1107,8 @@ void loop()
         pulse(s26N);
         routeSet = true;
       }
-    } 
-  }  
+    }
+  }
   else if(bC5 && bD4)    //C5 to D4
   {
     if(!routeSet)
@@ -1133,7 +1135,7 @@ void loop()
         pulse(s22R);
         pulse(s24N);
      // pulse(s28N);
-     // pulse(s29N);    
+     // pulse(s29N);
         routeSet =true;
       }
     }
@@ -1202,11 +1204,11 @@ void loop()
         routeSet = true;
       }
     }
-  }   
+  }
   else if(bC6 && bD4)    //C6 to D4
   {
     if(!routeSet)
-    { 
+    {
       debounce();
       if(bC6 && bD4)
       {
@@ -1273,7 +1275,7 @@ void loop()
       if(bC6 && bX1)
       {
         pulse(s21N);
-        routeSet = true;        
+        routeSet = true;
       }
     }
   }
@@ -1283,7 +1285,7 @@ void loop()
   else if(bA1 && bD2)   //A1 to D2
   {
     if(!routeSet)
-    {      
+    {
       debounce();
       if(bA1 && bD2)
       {
@@ -1294,7 +1296,7 @@ void loop()
       pulse(s26N);
       pulse(s27N);
       routeSet = true;
-      }  
+      }
     }
   }
   else if(bA1 && bD3)   //A1 to D3
@@ -1311,8 +1313,8 @@ void loop()
         pulse(s23N);
         pulse(s25N);
         pulse(s26N);
-        routeSet = true;        
-      }      
+        routeSet = true;
+      }
     }
   }
   else if(bA1 && bD4)   //A1 to D4
@@ -1350,9 +1352,48 @@ void loop()
         pulse(s26R);
         pulse(s27N);
         routeSet = true;
-      }      
+      }
     }
-  }    
+  }
+  else if(bB3 && bD2)   //B3 to D2
+  {
+    if(!routeSet)
+    {
+      debounce();
+      if(bB3 && bD2)
+      {
+        pulse(s10R);
+        pulse(s11N);
+        pulse(s16N);
+        pulse(s19N);
+        pulse(s23N);
+        pulse(s25N);
+        pulse(s26R);
+        pulse(s27N);
+        routeSet = true;
+      }
+    }
+  }
+  else if(bB4 && bD2)   //B4 to D2
+  {
+    if(!routeSet)
+    {
+      debounce();
+      if(bB4 && bD2)
+      {
+        pulse(s10N);
+        pulse(s11R);
+        pulse(s16N);
+        pulse(s19N);
+        pulse(s23N);
+        pulse(s25N);
+        pulse(s26R);
+        pulse(s27N);
+        routeSet = true;
+      }
+    }
+  }
+
   else if(bA2 && bD3)   //A2 to D3
   {
     {
@@ -1371,6 +1412,41 @@ void loop()
       }
     }
   }
+  else if(bB3 && bD3)   //B3 to D3
+  {
+    {
+      debounce();
+      if(bB3 && bD3)
+      {
+        pulse(s10N);
+        pulse(s11R);
+        pulse(s16N);
+        pulse(s19N);
+        pulse(s23N);
+        pulse(s25N);
+        pulse(s26N);
+        routeSet = true;
+      }
+    }
+  }
+  else if(bB4 && bD3)   //B4 to D3
+  {
+    {
+      debounce();
+      if(bB4 && bD3)
+      {
+        pulse(s10N);
+        pulse(s11N);
+        pulse(s16N);
+        pulse(s19N);
+        pulse(s23N);
+        pulse(s25N);
+        pulse(s26N);
+        routeSet = true;
+      }
+    }
+  }
+
   else if(bA2 && bD4)   //A2 to D4
   {
     if(!routeSet)
@@ -1387,9 +1463,45 @@ void loop()
         pulse(s24N);
         pulse(s25N);
         routeSet = true;
-      }      
+      }
     }
   }
+
+  else if(bB3 && bD4)   //B3 to D4
+  {
+    if(!routeSet)
+    {
+      debounce();
+      if(bB3 && bD4)
+      {
+        pulse(s11R);
+        pulse(s16N);
+        pulse(s19N);
+        pulse(s23R);
+        pulse(s24N);
+        pulse(s25N);
+        routeSet = true;
+      }
+    }
+  }
+  else if(bB4 && bD4)   //B4 to D4
+  {
+    if(!routeSet)
+    {
+      debounce();
+      if(bB4 && bD4)
+      {
+        pulse(s11N);
+        pulse(s16N);
+        pulse(s19N);
+        pulse(s23R);
+        pulse(s24N);
+        pulse(s25N);
+        routeSet = true;
+      }
+    }
+  }
+
   else if(bA3 && bD2)   //A3 to D2
   {
     if(!routeSet)
@@ -1407,7 +1519,7 @@ void loop()
         pulse(s26R);
         pulse(s27N);
         routeSet = true;
-      }      
+      }
     }
   }
   else if(bA3 && bD3)   //A3 to D3
@@ -1420,13 +1532,14 @@ void loop()
         pulse(s4N);
         pulse(s3R);
         pulse(s11N);
+        pulse(s12N);
         pulse(s16N);
         pulse(s19N);
         pulse(s23N);
         pulse(s25N);
         pulse(s26N);
         routeSet = true;
-      }      
+      }
     }
   }
   else if(bA3 && bD4)   //A3 to D4
@@ -1439,6 +1552,139 @@ void loop()
         pulse(s4N);
         pulse(s3N);
         pulse(s12N);
+        pulse(s16N);
+        pulse(s17N);
+        pulse(s23N);
+        pulse(s24N);
+        pulse(s25N);
+        routeSet = true;
+      }
+    }
+  }
+
+  else if(bB6 && bD2)   //B6 to D2
+  {
+    if(!routeSet)
+    {
+      debounce();
+      if(bB6 && bD2)
+      {
+        pulse(s8R);
+        pulse(s12R);
+        pulse(s16R);
+        pulse(s19N);
+        pulse(s23N);
+        pulse(s25N);
+        pulse(s26R);
+        pulse(s27N);
+        routeSet = true;
+      }
+    }
+  }
+  else if(bB7 && bD2)   //B7 to D2
+  {
+    if(!routeSet)
+    {
+      debounce();
+      if(bB7 && bD2)
+      {
+        pulse(s8N);
+        pulse(s12R);
+        pulse(s16R);
+        pulse(s19N);
+        pulse(s23N);
+        pulse(s25N);
+        pulse(s26R);
+        pulse(s27N);
+        routeSet = true;
+      }
+    }
+  }
+
+  else if(bB6 && bD3)   //B6 to D3
+  {
+    if(!routeSet)
+    {
+      debounce();
+      if(bB6 && bD3)
+      {
+        pulse(s8R);
+        pulse(s12R);
+        pulse(s16R);
+        pulse(s19N);
+        pulse(s23N);
+        pulse(s25N);
+        pulse(s26N);
+        routeSet = true;
+      }
+    }
+  }
+  else if(bB7 && bD3)   //B7 to D3
+  {
+    if(!routeSet)
+    {
+      debounce();
+      if(bB7 && bD3)
+      {
+        pulse(s8N);
+        pulse(s12R);
+        pulse(s16R);
+        pulse(s19N);
+        pulse(s23N);
+        pulse(s25N);
+        pulse(s26N);
+        routeSet = true;
+      }
+    }
+  }
+
+  else if(bB6 && bD4)   //B6 to D4
+  {
+    if(!routeSet)
+    {
+      debounce();
+      if(bB6 && bD4)
+      {
+        pulse(s8R);
+        pulse(s12R);
+        pulse(s16N);
+        pulse(s17N);
+        pulse(s23N);
+        pulse(s24N);
+        pulse(s25N);
+        routeSet = true;
+      }
+    }
+  }
+  else if(bB7 && bD4)   //B7 to D4
+  {
+    if(!routeSet)
+    {
+      debounce();
+      if(bB7 && bD4)
+      {
+        pulse(s8N);
+        pulse(s12R);
+        pulse(s16N);
+        pulse(s17N);
+        pulse(s23N);
+        pulse(s24N);
+        pulse(s25N);
+        routeSet = true;
+      }
+    }
+  }
+
+  else if(bA4 && bD4)   //A4 to D4
+  {
+    if(!routeSet)
+    {
+      debounce();
+      if(bA4 && bD4)
+      {
+        pulse(s5N);
+        pulse(s8N);
+        pulse(s12R);
         pulse(s16N);
         pulse(s17N);
         pulse(s23N);
@@ -1465,9 +1711,9 @@ void loop()
         pulse(s26R);
         pulse(s27N);
         routeSet = true;
-      }      
+      }
     }
-  }    
+  }
   else if(bA4 && bD3)   //A4 to D3
   {
     if(!routeSet)
@@ -1484,7 +1730,7 @@ void loop()
         pulse(s25N);
         pulse(s26N);
         routeSet = true;
-      }       
+      }
     }
   }
   else if(bA4 && bD4)   //A4 to D4
@@ -1503,7 +1749,7 @@ void loop()
         pulse(s24N);
         pulse(s25N);
         routeSet = true;
-      }      
+      }
     }
   }
   else if(bA5 && bD2)   //A5 to D2
@@ -1522,8 +1768,8 @@ void loop()
         pulse(s25R);
         pulse(s26R);
         pulse(s27N);
-        routeSet = true;        
-      }      
+        routeSet = true;
+      }
     }
   }
   else if(bA5 && bD3)   //A5 to D3
@@ -1541,7 +1787,7 @@ void loop()
         pulse(s24R);
         pulse(s25R);
         pulse(s26N);
-        routeSet = true;                
+        routeSet = true;
       }
     }
   }
@@ -1559,8 +1805,8 @@ void loop()
         pulse(s22N);
         pulse(s24R);
         pulse(s25N);
-        routeSet = true;        
-      }      
+        routeSet = true;
+      }
     }
   }
   else if(bA5 && bD5)   //A5 to D5
@@ -1578,10 +1824,10 @@ void loop()
         pulse(s24N);
         pulse(s28N);
         pulse(s29N);
-        routeSet = true;        
-      }      
+        routeSet = true;
+      }
     }
-  }      
+  }
   else if(bA6 && bD2)   //A6 to D2
   {
     if(!routeSet)
@@ -1598,8 +1844,8 @@ void loop()
         pulse(s25R);
         pulse(s26R);
         pulse(s27N);
-        routeSet = true;        
-      }      
+        routeSet = true;
+      }
     }
   }
   else if(bA6 && bD3)   //A6 to D3
@@ -1617,8 +1863,8 @@ void loop()
         pulse(s24R);
         pulse(s25R);
         pulse(s26N);
-        routeSet = true;        
-      }      
+        routeSet = true;
+      }
     }
   }
   else if(bA6 && bD4)   //A6 to D4
@@ -1635,8 +1881,8 @@ void loop()
         pulse(s22N);
         pulse(s24R);
         pulse(s25N);
-        routeSet = true;        
-      }      
+        routeSet = true;
+      }
     }
   }
   else if(bA6 && bD5)   //A6 to D5
@@ -1654,8 +1900,8 @@ void loop()
         pulse(s24N);
         pulse(s28N);
         pulse(s29N);
-        routeSet = true;          
-      }      
+        routeSet = true;
+      }
     }
   }
   else if(bA6 && bD6)   //A6 to D6
@@ -1672,8 +1918,8 @@ void loop()
         pulse(s22N);
         pulse(s28R);
         pulse(s29N);
-        routeSet = true;          
-      }      
+        routeSet = true;
+      }
     }
   }
 
@@ -1688,8 +1934,8 @@ void loop()
         pulse(s19N);
         pulse(s26N);
         pulse(s27N);
-        routeSet = true;        
-      }      
+        routeSet = true;
+      }
     }
   }
   else if(bB1 && bD3)   //B1 to D3
@@ -1704,8 +1950,8 @@ void loop()
         pulse(s23N);
         pulse(s25N);
         pulse(s26N);
-        routeSet = true;        
-      }      
+        routeSet = true;
+      }
     }
   }
   else if(bB1 && bD4)   //B1 to D4
@@ -1720,8 +1966,8 @@ void loop()
         pulse(s23R);
         pulse(s24N);
         pulse(s25N);
-        routeSet = true;        
-      }      
+        routeSet = true;
+      }
     }
   }
 
@@ -1738,8 +1984,8 @@ void loop()
         pulse(s25R);
         pulse(s26R);
         pulse(s27N);
-        routeSet = true;        
-      }      
+        routeSet = true;
+      }
     }
   }
 
@@ -1755,8 +2001,8 @@ void loop()
         pulse(s24N);
         pulse(s25R);
         pulse(s26N);
-        routeSet = true;        
-      }      
+        routeSet = true;
+      }
     }
   }
   else if(bB8 && bD4)   //B8 to D4
@@ -1770,8 +2016,8 @@ void loop()
         pulse(s23N);
         pulse(s24N);
         pulse(s25N);
-        routeSet = true;        
-      }      
+        routeSet = true;
+      }
     }
   }
   else if(bB8 && bD5)   //B8 to D5
@@ -1788,8 +2034,8 @@ void loop()
         pulse(s24N);
         pulse(s28N);
         pulse(s29N);
-        routeSet = true;        
-      }      
+        routeSet = true;
+      }
     }
   }
 
@@ -1808,8 +2054,8 @@ void loop()
         pulse(s25R);
         pulse(s26R);
         pulse(s27N);
-        routeSet = true;        
-      }      
+        routeSet = true;
+      }
     }
   }
 
@@ -1827,8 +2073,8 @@ void loop()
         pulse(s24R);
         pulse(s25R);
         pulse(s26N);
-        routeSet = true;        
-      }      
+        routeSet = true;
+      }
     }
   }
   else if(bB9 && bD4)   //B9 to D4
@@ -1844,8 +2090,8 @@ void loop()
         pulse(s22N);
         pulse(s24R);
         pulse(s25N);
-        routeSet = true;        
-      }      
+        routeSet = true;
+      }
     }
   }
   else if(bB9 && bD5)   //B9 to D5
@@ -1862,8 +2108,8 @@ void loop()
         pulse(s24N);
         pulse(s28N);
         pulse(s29N);
-        routeSet = true;        
-      }      
+        routeSet = true;
+      }
     }
   }
 
@@ -1881,8 +2127,8 @@ void loop()
         pulse(s22N);
         pulse(s28R);
         pulse(s29N);
-        routeSet = true;        
-      }      
+        routeSet = true;
+      }
     }
   }
   else if(bB12 && bD6)  //B12 to D6
@@ -1899,8 +2145,8 @@ void loop()
         pulse(s22N);
         pulse(s28R);
         pulse(s29N);
-        routeSet = true;        
-      }      
+        routeSet = true;
+      }
     }
   }
 
@@ -1917,8 +2163,8 @@ void loop()
         pulse(s22N);
      // pulse(s28R);
      // pulse(s29N);
-        routeSet = true;        
-      }      
+        routeSet = true;
+      }
     }
   }
 
@@ -1931,8 +2177,8 @@ void loop()
       {
         pulse(s28R);
         pulse(s29N);
-        routeSet = true;        
-      }      
+        routeSet = true;
+      }
     }
   }
 
@@ -2016,7 +2262,7 @@ void loop()
         pulse(s27N);
         pulse(s28N);
         pulse(s29N);
-        routeSet = true;  
+        routeSet = true;
       }
     }
   }
