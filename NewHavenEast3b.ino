@@ -2,7 +2,7 @@
 // Bill's panel program by Geoff Smith w/ correctio
 // enhanced with serial monitor debugging by gregc
 
-const char version [] = "New Haven East 3 181113b";
+const char version [] = "New Haven East 3 211005a";
 
 #include "Wire.h"  //For I2R operations with MRC cards
 
@@ -1656,6 +1656,25 @@ void loop()
       }      
     }
   }
+  else if(bA6 && bD6)   //A6 to D6
+  {
+    if(!routeSet)
+    {
+      debounce();
+      if(bA6 && bD6)
+      {
+        pulse(s7N);
+        pulse(s9N);
+        pulse(s13N);
+        pulse(s20N);
+        pulse(s22N);
+        pulse(s28R);
+        pulse(s29N);
+        routeSet = true;          
+      }      
+    }
+  }
+
   else if(bB1 && bD2)   //B1 to D2
   {
     if(!routeSet)
@@ -1845,6 +1864,44 @@ void loop()
       }      
     }
   }
+
+  else if(bB11 && bD6)  //B11 to D6
+  {
+    if(!routeSet)
+    {
+      debounce();
+      if(bB11 && bD6)
+      {
+        pulse(s9R);
+        pulse(s13N);
+        pulse(s20N);
+        pulse(s20N);
+        pulse(s22N);
+        pulse(s28R);
+        pulse(s29N);
+        routeSet = true;        
+      }      
+    }
+  }
+  else if(bB12 && bD6)  //B12 to D6
+  {
+    if(!routeSet)
+    {
+      debounce();
+      if(bB12 && bD6)
+      {
+        pulse(s9N);
+        pulse(s13N);
+        pulse(s20N);
+        pulse(s20N);
+        pulse(s22N);
+        pulse(s28R);
+        pulse(s29N);
+        routeSet = true;        
+      }      
+    }
+  }
+
   else if(bB13 && bD6)  //B13 to D6
   {
     if(!routeSet)
