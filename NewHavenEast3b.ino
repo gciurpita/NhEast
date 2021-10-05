@@ -1234,6 +1234,7 @@ void loop()
       }
     }
   }
+#if 0
   else if(bD5)   //D5
   {
     if(!routeSet)
@@ -1247,6 +1248,7 @@ void loop()
       }
     }
   }
+#endif
 
   else if(bC6 && bD6)   //C6 to D6
   {
