@@ -29,11 +29,11 @@ IOX16 I2C I/O Expander</a>
 High Current Adapter</a>
 <li> custom latching relay board that powers Tortoise switch machines
 
-<img height=150
+<img width=150
   src=http://www.pacificsouthern.org/Members/BillLupoli/Images/IMG_1330.JPG>
-<img height=150
+<img width=150
   src=http://www.pacificsouthern.org/Members/BillLupoli/Images/IMG_1333.JPG>
-<img height=150
+<img width=150
   src=http://www.pacificsouthern.org/Members/BillLupoli/Images/IMG_1332.JPG>
 
 <!-- -------------------------------------------  -------------------------- -->
