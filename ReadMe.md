@@ -37,7 +37,6 @@ High Current Adapter</a>
   src=http://www.pacificsouthern.org/Members/BillLupoli/Images/IMG_1332.JPG>
 
 <!-- -------------------------------------------  -------------------------- -->
-<table width=100%> <tr> <td> </table>
 <h4> Routes </h4>
 
 Unlike the
