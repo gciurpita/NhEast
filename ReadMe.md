@@ -40,7 +40,7 @@ High Current Adapter</a>
 <h4> Routes </h4>
 
 Unlike the
-<a href=https://www.modelrailroadcontrolsystems.com/csnk-version-2-high-current-adapter-for-cpnode-iox16-iox32/>
+<a href=https://github.com/gciurpita/Interlock#-panel-description-->
 west interlock</a>
 which is table driven,
 the east interlock code
