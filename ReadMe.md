@@ -21,11 +21,12 @@ Changes have been made to correct and add aditional routes.
   src=http://www.pacificsouthern.org/Members/BillLupoli/Images/IMG_1329.JPG>
 
 The hardware is composed of
-* Model Railroad Control Systems (MRCS)
+<li> Model Railroad Control Systems (MRCS)
 <a href=https://www.modelrailroadcontrolsystems.com/iox16-version-2-2-16-line-i-o-expander/>
 IOX16 I2C I/O Expander</a>
-<li> <a href=https://www.modelrailroadcontrolsystems.com/csnk-version-2-high-current-adapter-for-cpnode-iox16-iox32/>
-MRCS High Current Adapter</a>
+<li> MRCS 
+<a href=https://www.modelrailroadcontrolsystems.com/csnk-version-2-high-current-adapter-for-cpnode-iox16-iox32/>
+High Current Adapter</a>
 * custom latching relay board that powers Tortoise switch machines
 
 <img height=150
