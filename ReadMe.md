@@ -27,7 +27,7 @@ IOX16 I2C I/O Expander</a>
 <li> MRCS 
 <a href=https://www.modelrailroadcontrolsystems.com/csnk-version-2-high-current-adapter-for-cpnode-iox16-iox32/>
 High Current Adapter</a>
-* custom latching relay board that powers Tortoise switch machines
+<li> custom latching relay board that powers Tortoise switch machines
 
 <img height=150
   src=http://www.pacificsouthern.org/Members/BillLupoli/Images/IMG_1330.JPG>
